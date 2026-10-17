@@ -26,8 +26,8 @@ _Network diagram coming once the layout is finalized._
 
 | Component | Role |
 |---------| -------|
-| HP Pavilion Gaming Desktop (GTX 1660 Ti, [RAM] GB RAM) | Proxmox VE host |
-| GL.iNet Slate 7 travel router | Wired bridge to campus network, lab segmentation |
+| HP Pavilion Gaming Desktop (GTX 1660 Ti, 16 GB RAM) | Proxmox VE host |
+| GL.iNet BERYL travel router | Wired bridge to campus network, lab segmentation |
 | Raspberry Pi | Internal honeypot |
 
 ---
@@ -37,7 +37,7 @@ _Network diagram coming once the layout is finalized._
 ### Phase 0: Proxmox Host Setup ✅
 
 **Bare-metal install**
-- Installed Proxmox VE [version] on the desktop's second internal drive, dual-booting alongside Windows on the primary drive.
+- Installed Proxmox VE 9.1 on the desktop's second internal drive, dual-booting alongside Windows on the primary drive.
 
 **Problems and fixes**
 - **Nvidia GPU display issue:** The installer froze because of the GTX 1660 Ti. Fixed by booting the installer with the `nomodeset` kernel parameter, which disables the GPU's graphics driver during install.
@@ -46,7 +46,7 @@ _Network diagram coming once the layout is finalized._
 
 **Problem:** The dorm has no wired Ethernet, and campus policy doesn't allow students to broadcast their own Wi-Fi networks. The Proxmox host had no usable network connection.
 
-**Solution:** Configured a GL.iNet Slate 7 travel router in repeater mode:
+**Solution:** Configured a GL.iNet beryl travel router in repeater mode:
 - Connects to campus Wi-Fi as a client
 - Provides wired Ethernet to the Proxmox host
 - Router's own access point is **disabled** to stay within campus network policy
