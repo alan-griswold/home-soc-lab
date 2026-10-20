@@ -34,7 +34,7 @@ _Network diagram coming once the layout is finalized._
 
 ## Progress Log
 
-### Phase 0: Proxmox Host Setup ✅
+### Phase 0: Proxmox Host Setup 
 
 **Bare-metal install**
 - Installed Proxmox VE 9.1 on the desktop's second internal drive, dual-booting alongside Windows on the primary drive.
@@ -42,7 +42,7 @@ _Network diagram coming once the layout is finalized._
 **Problems and fixes**
 - **Nvidia GPU display issue:** The installer froze because of the GTX 1660 Ti. Fixed by booting the installer with the `nomodeset` kernel parameter, which disables the GPU's graphics driver during install.
 
-### Phase 1: Network Access ✅
+### Phase 1: Network Access 
 
 **Problem:** The dorm has no wired Ethernet, and campus policy doesn't allow students to broadcast their own Wi-Fi networks. The Proxmox host had no usable network connection.
 
