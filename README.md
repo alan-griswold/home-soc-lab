@@ -1,7 +1,7 @@
 
 A home security operations center (SOC) lab built on Proxmox VE and Wazuh SIEM, with an isolated Raspberry Pi honeypot. The goal is to practice log collection, threat detection, and incident investigation hands-on, and build a foundation for a follow-up cloud security lab in Microsoft Azure.
 
-> **Status:** In progress. Proxmox host is installed and networked; SOC architecture and Wazuh deployment are next.
+> **Status:** In progress. Proxmox host is installed and remotely accessible; SOC architecture and Wazuh deployment are next.
 
 ## Goals
 
@@ -17,6 +17,7 @@ A home security operations center (SOC) lab built on Proxmox VE and Wazuh SIEM, 
 - Proxmox VE hypervisor hosting the Wazuh server and endpoint VMs
 - Raspberry Pi honeypot on an isolated network segment (internal only, not internet-facing)
 - Controlled attack simulation from a separate segment, with alerts flowing into Wazuh
+- Remote administration over Tailscale with key-only SSH, with no inbound ports exposed
 
 **Phase 2: Cloud (future repo)**
 - Internet-facing honeypot in Azure feeding Microsoft Sentinel for real-world attack analysis
@@ -32,39 +33,19 @@ _Network diagram coming once the layout is finalized._
 
 ---
 
-## Progress Log
+## Progress
+| Phase | Status | Writeup |
+|---|---|---|
+| 0. Proxmox install and remote access | Done | [Read the writeup](proxmox-install-writeup.md) |
+| 1. Wazuh server VM | Planned | not yet |
+| 2. Windows and Linux endpoints with agents | Planned | not yet |
+| 3. Raspberry Pi honeypot | Planned | not yet |
+| 4. Attack simulation and custom detections | Planned | not yet |
 
-### Phase 0: Proxmox Host Setup 
-
-**Bare-metal install**
-- Installed Proxmox VE 9.1 on the desktop's second internal drive, dual-booting alongside Windows on the primary drive.
-
-**Problems and fixes**
-- **Nvidia GPU display issue:** The installer froze because of the GTX 1660 Ti. Fixed by booting the installer with the `nomodeset` kernel parameter, which disables the GPU's graphics driver during install.
-
-### Phase 1: Network Access 
-
-**Problem:** The dorm has no wired Ethernet, and campus policy doesn't allow students to broadcast their own Wi-Fi networks. The Proxmox host had no usable network connection.
-
-**Solution:** Configured a GL.iNet beryl travel router in repeater mode:
-- Connects to campus Wi-Fi as a client
-- Provides wired Ethernet to the Proxmox host
-- Router's own access point is **disabled** to stay within campus network policy
-
-This also sets up the router to handle VLAN segmentation for the lab in later phases.
-
-### Next Steps
-
-- [ ] Design the lab network layout and segments
-- [ ] Deploy the Wazuh server VM
-- [ ] Add Windows and Linux endpoint VMs with Wazuh agents
-- [ ] Set up the Raspberry Pi honeypot on an isolated segment
-- [ ] Simulate attacks and write custom detection rules
-
----
 
 ## Lessons Learned
 
-- Check hypervisor release notes and known issues before installing; the newest version isn't always the most stable.
-- GPU compatibility problems are common on consumer hardware; `nomodeset` is a standard first fix.
-- Real environments come with constraints (like campus network rules), and the lab design has to work within them.
+- Check release notes and known issues before installing; the newest version isn't always the most stable.
+- When two independently verified pieces of media fail the same way, search the exact error text before re-diagnosing.
+- Prove a replacement works (key login) from a fresh session before removing the fallback (password login).
+- Real environments come with constraints, like campus network rules, and the lab has to be designed around them.
