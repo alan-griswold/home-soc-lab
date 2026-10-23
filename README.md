@@ -28,7 +28,7 @@ _Network diagram coming once the layout is finalized._
 | Component | Role |
 |---------| -------|
 | HP Pavilion Gaming Desktop (GTX 1660 Ti, 16 GB RAM) | Proxmox VE host |
-| GL.iNet BERYL travel router | Wired bridge to campus network, lab segmentation |
+| GL.iNet BERYL travel router | Connects the host to campus wifi |
 | Raspberry Pi | Internal honeypot |
 
 ---
